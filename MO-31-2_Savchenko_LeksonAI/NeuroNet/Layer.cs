@@ -4,6 +4,7 @@ using System.Configuration;
 using System.IO;
 using System.Windows.Forms;
 
+
 namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
 {
     abstract class Layer
@@ -87,7 +88,7 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
                         }
                     }
                     break;
-
+                    
 
                 case MemoryMode.SET:
                     string[] tmpLines = new string[numofneurons];
@@ -105,12 +106,21 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
 
 
                 case MemoryMode.INIT:
+                    Random random = new Random();
                     for (int i = 0; i < numofneurons; i++)
                     {
+                        double sum = 0.0;
+                        double squaredsum = 0.0;
                         for (int j = 0; j < numofprevneurons + 1; j++)
                         {
-                            weights[i, j] = 0;
+                            weights[i, j] = random.NextDouble()-1;
+                            sum += weights[i, j];
+                            squaredsum += weights[i, j] * weights[i, j];
                         }
+                        double mean = sum / (numofneurons + 1);
+
+                        double variance = (squaredsum / (numofprevneurons + 1)) - (mean * mean);
+                        double root = Math.Sqrt(variance);
                     }
                     WeightInitialize(MemoryMode.SET, path);
                     break;

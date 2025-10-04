@@ -14,7 +14,7 @@ namespace MO_31_2_Savchenko_LeksonAI
     public partial class FormMain : Form
     {
         private double[] inputPixels; // хранение состояния пикселей (0 - белый, 1 - чёрный)
-
+        private NeuroNet.HiddenLayer hiddenlayer1;
         //Конструктор
         public FormMain()
         {
@@ -64,6 +64,11 @@ namespace MO_31_2_Savchenko_LeksonAI
             tmpStr += "\n";
 
             File.AppendAllText(path, tmpStr);
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            hiddenlayer1 = new NeuroNet.HiddenLayer(10, 10, NeuroNet.NeuronType.Hidden, nameof(hiddenlayer1));
         }
     }
 }
