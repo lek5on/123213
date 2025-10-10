@@ -69,64 +69,90 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
         public double[,] WeightInitialize(MemoryMode mm, string path)
         {
             char[] delim = new char[] { ';', ' ' };
-            string tmpStr;
             string[] tmpStrWeights;
             double[,] weights = new double[numofneurons, numofprevneurons + 1];
 
             switch (mm)
             {
+                // парсинг в тип double строкового формата веса нейронов из csv - получает значения весов нейронов
                 case MemoryMode.GET:
-                    tmpStrWeights = File.ReadAllLines(path); //читаем все строки файла
-                    string[] memory_element; //временный массив, хранящий веса одного нейрона в виде строк
+                    tmpStrWeights = File.ReadAllLines(path);        // считывание строк текстового файла csv весов нейрона (в tmpStrWeights каждый i-ый элемент это строка весов)
+                    string[] memory_elemnt; // массив, где каждый i-ый элемент это один вес нейрона (берётся одна строка из tmpStrWeights)
+
+                    // строка весов нейронов
                     for (int i = 0; i < numofneurons; i++)
                     {
-                        memory_element = tmpStrWeights[i].Split(delim);
+                        memory_elemnt = tmpStrWeights[i].Split(delim);  // разбивает строку
+                        // каждый отдельный вес нейрона
                         for (int j = 0; j < numofprevneurons + 1; j++)
                         {
-                            weights[i, j] = double.Parse(memory_element[j].Replace(',', '.'),
+                            weights[i, j] = double.Parse(memory_elemnt[j].Replace(',', '.'),
                                 System.Globalization.CultureInfo.InvariantCulture);
                         }
                     }
                     break;
-                    
 
+                // парсинг в строковой формат веса нейронов в csv (обратный MemoryMode.GET) - сохраняет готовые веса нейронов
                 case MemoryMode.SET:
-                    string[] tmpLines = new string[numofneurons];
+                    tmpStrWeights = new string[numofneurons]; // создаём строку из весов нейрона (tmpStrWeights это массив, где каждый i-ый элемент это строка весов) 
                     for (int i = 0; i < numofneurons; i++)
                     {
-                        string[] tmpRow = new string[numofprevneurons + 1];
+                        string[] memory_elemnt2 = new string[numofprevneurons + 1];
                         for (int j = 0; j < numofprevneurons + 1; j++)
                         {
-                            tmpRow[j] = weights[i, j].ToString(System.Globalization.CultureInfo.InvariantCulture); //Преобразуем число в строку и записываем в row
+                            memory_elemnt2[j] = neurons[i].Weights[j]
+                                .ToString(System.Globalization.CultureInfo.InvariantCulture)
+                                .Replace('.', ',');
                         }
-                        tmpLines[i] = string.Join(";", tmpRow); //соединяем все елементы tmpRow и присваиваем в tmpLines для текущего нейрона
+                        tmpStrWeights[i] = string.Join(";", memory_elemnt2);
                     }
-                    File.WriteAllLines(path, tmpLines); //запись в файл
+                    File.WriteAllLines(path, tmpStrWeights);
                     break;
 
-
+                // инициализация весов для нейронов
                 case MemoryMode.INIT:
                     Random random = new Random();
                     for (int i = 0; i < numofneurons; i++)
                     {
                         double sum = 0.0;
-                        double squaredsum = 0.0;
+                        double squaredSum = 0.0;
+
                         for (int j = 0; j < numofprevneurons + 1; j++)
                         {
-                            weights[i, j] = random.NextDouble()-1;
-                            sum += weights[i, j];
-                            squaredsum += weights[i, j] * weights[i, j];
-                        }
-                        double mean = sum / (numofneurons + 1);
+                            // диапазон [-1, +1]
+                            weights[i, j] = random.NextDouble() * 2.0 - 1.0;
 
-                        double variance = (squaredsum / (numofprevneurons + 1)) - (mean * mean);
+                            sum += weights[i, j];
+                            squaredSum += weights[i, j] * weights[i, j];
+                        }
+
+                        double mean = sum / (numofprevneurons + 1);
+                        double variance = (squaredSum / (numofprevneurons + 1)) - (mean * mean);
                         double root = Math.Sqrt(variance);
+
+                        for (int j = 0; j < numofprevneurons + 1; j++)
+                        {
+                            weights[i, j] = (weights[i, j] - mean) / root;
+                        }
                     }
-                    WeightInitialize(MemoryMode.SET, path);
+
+                    // сохраняем weights в csv
+                    string[] lines = new string[numofneurons];
+                    for (int i = 0; i < numofneurons; i++)
+                    {
+                        string[] row = new string[numofprevneurons + 1];
+                        for (int j = 0; j < numofprevneurons + 1; j++)
+                        {
+                            row[j] = weights[i, j]
+                                .ToString(System.Globalization.CultureInfo.InvariantCulture)
+                                .Replace('.', ',');
+                        }
+                        lines[i] = string.Join(";", row);
+                    }
+                    File.WriteAllLines(path, lines);
                     break;
             }
             return weights;
         }
-
     }
 }
