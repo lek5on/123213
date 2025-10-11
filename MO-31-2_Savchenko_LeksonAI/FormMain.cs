@@ -8,12 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using MO_31_2_Savchenko_LeksonAI.NeuroNet;
 
 namespace MO_31_2_Savchenko_LeksonAI
 {
     public partial class FormMain : Form
     {
         private double[] inputPixels; // хранение состояния пикселей (0 - белый, 1 - чёрный)
+        private Network network;
         private NeuroNet.HiddenLayer hiddenlayer1;
         //Конструктор
         public FormMain()
@@ -21,6 +23,7 @@ namespace MO_31_2_Savchenko_LeksonAI
             InitializeComponent();
 
             inputPixels = new double[15];
+            network = new Network();
         }
 
         //Обработчик кнопки

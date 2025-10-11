@@ -154,5 +154,8 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
             }
             return weights;
         }
+        abstract public void Recognize(Network net, Layer nextLayer);
+        abstract public double[] BackwardPass(double[] staff);
     }
+    
 }

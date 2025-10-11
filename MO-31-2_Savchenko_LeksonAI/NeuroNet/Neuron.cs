@@ -17,7 +17,7 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
         // свойства
         public double[] Weights { get => weights; set => weights = value; }
         public double[] Inputs { get => inputs; set => inputs = value; }
-        public double Outputs { get => output; }
+        public double Output { get => output; }
         public double Derivative { get => derivative; }
 
         // конструктор
