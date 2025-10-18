@@ -1,0 +1,44 @@
+Random random = new Random();
+for (int i = 0; i < numofneurons; i++)
+{
+    double sum = 0.0;
+    double squaredSum = 0.0;
+
+    for (int j = 0; j < numofprevneurons + 1; j++)
+    {
+        // диапазон [-1, +1]
+        weights[i, j] = random.NextDouble() * 2.0 - 1.0;
+
+        sum += weights[i, j];
+        squaredSum += weights[i, j] * weights[i, j];
+    }
+
+    double mean = sum / (numofprevneurons + 1);
+    double variance = (squaredSum / (numofprevneurons + 1)) - (mean * mean);
+    double root = Math.Sqrt(variance);
+
+    for (int j = 0; j < numofprevneurons + 1; j++)
+    {
+        weights[i, j] = (weights[i, j] - mean) / root;
+        // Приравнивание весов, выходящих за [-1, 1]
+        if (weights[i, j] > 1.0)
+            weights[i, j] = 1.0;
+        else if (weights[i, j] < -1.0)
+            weights[i, j] = -1.0;
+    }
+}
+
+// сохраняем weights в csv
+string[] lines = new string[numofneurons];
+for (int i = 0; i < numofneurons; i++)
+{
+    string[] row = new string[numofprevneurons + 1];
+    for (int j = 0; j < numofprevneurons + 1; j++)
+    {
+        row[j] = weights[i, j]
+            .ToString(System.Globalization.CultureInfo.InvariantCulture)
+            .Replace('.', ',');
+    }
+    lines[i] = string.Join(";", row);
+}
+File.WriteAllLines(path, lines);
