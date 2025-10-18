@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using MO_31_2_Savchenko_LeksonAI.NeuroNet;
@@ -72,6 +67,14 @@ namespace MO_31_2_Savchenko_LeksonAI
         private void button17_Click(object sender, EventArgs e)
         {
             hiddenlayer1 = new NeuroNet.HiddenLayer(10, 10, NeuroNet.NeuronType.Hidden, nameof(hiddenlayer1));
+        }
+
+        private void buttonRecognize_Click(object sender, EventArgs e)
+        {
+            network.ForwardPass(network, inputPixels);
+            labelOut.Text = network.Fact.ToList().IndexOf(network.Fact.Max()).ToString();
+            labelProbability.Text = (100 * network.Fact.Max()).ToString("0.00") + " %";
+
         }
     }
 }

@@ -16,5 +16,13 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
         public double[] E_error_avr { get => e_error_avr; set => e_error_avr = value; }
 
         public Network() { }
+
+        public void ForwardPass(Network net, double[] netInput)
+        {
+            net.hidden_layer1.Data = netInput;
+            net.hidden_layer1.Recognize(null, net.hidden_layer2);
+            net.hidden_layer2.Recognize(null, net.output_layer);
+            net.output_layer.Recognize(net, null);
+        }
     }
 }

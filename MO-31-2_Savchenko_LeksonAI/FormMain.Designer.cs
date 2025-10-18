@@ -48,6 +48,9 @@ namespace MO_31_2_Savchenko_LeksonAI
             this.button16 = new System.Windows.Forms.Button();
             this.SaveTrainSample = new System.Windows.Forms.Button();
             this.button17 = new System.Windows.Forms.Button();
+            this.labelOut = new System.Windows.Forms.Label();
+            this.labelProbability = new System.Windows.Forms.Label();
+            this.buttonRecognize = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NecessaryOutput)).BeginInit();
             this.SuspendLayout();
             // 
@@ -248,18 +251,18 @@ namespace MO_31_2_Savchenko_LeksonAI
             // 
             // numericUpDown_NecessaryOutput
             // 
-            this.numericUpDown_NecessaryOutput.Location = new System.Drawing.Point(319, 121);
+            this.numericUpDown_NecessaryOutput.Location = new System.Drawing.Point(245, 131);
             this.numericUpDown_NecessaryOutput.Name = "numericUpDown_NecessaryOutput";
-            this.numericUpDown_NecessaryOutput.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown_NecessaryOutput.Size = new System.Drawing.Size(102, 20);
             this.numericUpDown_NecessaryOutput.TabIndex = 15;
             // 
             // button16
             // 
             this.button16.BackColor = System.Drawing.Color.White;
             this.button16.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button16.Location = new System.Drawing.Point(391, 162);
+            this.button16.Location = new System.Drawing.Point(245, 195);
             this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(105, 31);
+            this.button16.Size = new System.Drawing.Size(102, 24);
             this.button16.TabIndex = 16;
             this.button16.Text = "SaveTestSample";
             this.button16.UseVisualStyleBackColor = false;
@@ -269,9 +272,9 @@ namespace MO_31_2_Savchenko_LeksonAI
             // 
             this.SaveTrainSample.BackColor = System.Drawing.Color.White;
             this.SaveTrainSample.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SaveTrainSample.Location = new System.Drawing.Point(283, 162);
+            this.SaveTrainSample.Location = new System.Drawing.Point(245, 165);
             this.SaveTrainSample.Name = "SaveTrainSample";
-            this.SaveTrainSample.Size = new System.Drawing.Size(102, 31);
+            this.SaveTrainSample.Size = new System.Drawing.Size(102, 23);
             this.SaveTrainSample.TabIndex = 17;
             this.SaveTrainSample.Text = "SaveTrainSample";
             this.SaveTrainSample.UseVisualStyleBackColor = false;
@@ -279,19 +282,56 @@ namespace MO_31_2_Savchenko_LeksonAI
             // 
             // button17
             // 
-            this.button17.Location = new System.Drawing.Point(349, 226);
+            this.button17.BackColor = System.Drawing.Color.White;
+            this.button17.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button17.Location = new System.Drawing.Point(245, 233);
             this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(75, 23);
+            this.button17.Size = new System.Drawing.Size(102, 23);
             this.button17.TabIndex = 18;
             this.button17.Text = "make Layer";
-            this.button17.UseVisualStyleBackColor = true;
+            this.button17.UseVisualStyleBackColor = false;
             this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // labelOut
+            // 
+            this.labelOut.AutoSize = true;
+            this.labelOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelOut.Location = new System.Drawing.Point(135, 36);
+            this.labelOut.Name = "labelOut";
+            this.labelOut.Size = new System.Drawing.Size(70, 42);
+            this.labelOut.TabIndex = 19;
+            this.labelOut.Text = "out";
+            // 
+            // labelProbability
+            // 
+            this.labelProbability.AutoSize = true;
+            this.labelProbability.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelProbability.Location = new System.Drawing.Point(220, 52);
+            this.labelProbability.Name = "labelProbability";
+            this.labelProbability.Size = new System.Drawing.Size(127, 24);
+            this.labelProbability.TabIndex = 20;
+            this.labelProbability.Text = "вероятность";
+            // 
+            // buttonRecognize
+            // 
+            this.buttonRecognize.BackColor = System.Drawing.Color.White;
+            this.buttonRecognize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonRecognize.Location = new System.Drawing.Point(245, 90);
+            this.buttonRecognize.Name = "buttonRecognize";
+            this.buttonRecognize.Size = new System.Drawing.Size(102, 30);
+            this.buttonRecognize.TabIndex = 21;
+            this.buttonRecognize.Text = "распознать";
+            this.buttonRecognize.UseVisualStyleBackColor = false;
+            this.buttonRecognize.Click += new System.EventHandler(this.buttonRecognize_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(581, 370);
+            this.Controls.Add(this.buttonRecognize);
+            this.Controls.Add(this.labelProbability);
+            this.Controls.Add(this.labelOut);
             this.Controls.Add(this.button17);
             this.Controls.Add(this.SaveTrainSample);
             this.Controls.Add(this.button16);
@@ -316,6 +356,7 @@ namespace MO_31_2_Savchenko_LeksonAI
             this.Text = "FormMain";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NecessaryOutput)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -340,5 +381,8 @@ namespace MO_31_2_Savchenko_LeksonAI
         private System.Windows.Forms.Button button16;
         private System.Windows.Forms.Button SaveTrainSample;
         private System.Windows.Forms.Button button17;
+        private System.Windows.Forms.Label labelOut;
+        private System.Windows.Forms.Label labelProbability;
+        private System.Windows.Forms.Button buttonRecognize;
     }
 }

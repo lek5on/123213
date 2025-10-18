@@ -50,7 +50,7 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
         // функция активации нейрона (логистическая с коэффициентом a)
         private double Logistick(double x)
         {
-            return 1.0d / (1.0d + Exp(-a * x));
+            return 1.0d / (1.0d + Exp(-x));
         }
 
         // производная функции активации
