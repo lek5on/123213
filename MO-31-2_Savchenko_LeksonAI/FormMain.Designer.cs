@@ -29,6 +29,9 @@ namespace MO_31_2_Savchenko_LeksonAI
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -51,7 +54,9 @@ namespace MO_31_2_Savchenko_LeksonAI
             this.labelOut = new System.Windows.Forms.Label();
             this.labelProbability = new System.Windows.Forms.Label();
             this.buttonRecognize = new System.Windows.Forms.Button();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NecessaryOutput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // button1
@@ -324,11 +329,28 @@ namespace MO_31_2_Savchenko_LeksonAI
             this.buttonRecognize.UseVisualStyleBackColor = false;
             this.buttonRecognize.Click += new System.EventHandler(this.buttonRecognize_Click);
             // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(401, 24);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(430, 300);
+            this.chart1.TabIndex = 22;
+            this.chart1.Text = "chart1";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(581, 370);
+            this.ClientSize = new System.Drawing.Size(871, 393);
+            this.Controls.Add(this.chart1);
             this.Controls.Add(this.buttonRecognize);
             this.Controls.Add(this.labelProbability);
             this.Controls.Add(this.labelOut);
@@ -355,6 +377,7 @@ namespace MO_31_2_Savchenko_LeksonAI
             this.Name = "FormMain";
             this.Text = "FormMain";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_NecessaryOutput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -384,5 +407,6 @@ namespace MO_31_2_Savchenko_LeksonAI
         private System.Windows.Forms.Label labelOut;
         private System.Windows.Forms.Label labelProbability;
         private System.Windows.Forms.Button buttonRecognize;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

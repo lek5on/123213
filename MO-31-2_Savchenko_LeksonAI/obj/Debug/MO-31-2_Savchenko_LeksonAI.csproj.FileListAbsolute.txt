@@ -82,3 +82,14 @@ Z:\neiro2\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_Lek
 Z:\neiro2\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.csproj.CoreCompileInputs.cache
 Z:\neiro2\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.exe
 Z:\neiro2\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.pdb
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\bin\Debug\MO-31-2_Savchenko_LeksonAI.exe.config
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\bin\Debug\MO-31-2_Savchenko_LeksonAI.exe
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\bin\Debug\MO-31-2_Savchenko_LeksonAI.pdb
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.csproj.AssemblyReference.cache
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.exe.config
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO_31_2_Savchenko_LeksonAI.FormMain.resources
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO_31_2_Savchenko_LeksonAI.Properties.Resources.resources
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.csproj.GenerateResource.cache
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.csproj.CoreCompileInputs.cache
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.exe
+D:\neiro\23oct\123213-main\MO-31-2_Savchenko_LeksonAI\obj\Debug\MO-31-2_Savchenko_LeksonAI.pdb

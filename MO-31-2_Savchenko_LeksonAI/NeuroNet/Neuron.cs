@@ -4,59 +4,60 @@ namespace MO_31_2_Savchenko_LeksonAI.NeuroNet
 {
     class Neuron
     {
-        // поля
-        private NeuronType type;    // тип нейрона
-        private double[] weights;   // веса
-        private double[] inputs;    // входные данные
-        private double output;      // выходные данные
-        private double derivative;  // производная
+        //поля
+        private NeuronType type; //тип нейрона
+        private double[] weights; //его вес
+        private double[] inputs; //его входы
+        private double output; //выход
+        private double derivative; //производная
 
-        // константа для функции активации
-        private double a = 1.0d;
+        //Константы для функции активации
 
-        // свойства
+        //Свойства
         public double[] Weights { get => weights; set => weights = value; }
         public double[] Inputs { get => inputs; set => inputs = value; }
         public double Output { get => output; }
         public double Derivative { get => derivative; }
-
-        // конструктор
+        //Конструктор
         public Neuron(double[] memoryWeights, NeuronType typeNeuron)
         {
             type = typeNeuron;
             weights = memoryWeights;
         }
-
         public void Activator(double[] i)
         {
-            inputs = i; // передача вектора входного сигнала в массив входных данных нейрона
-            double sum = weights[0];  // аффиное преобразование через смещение
-            for (int j = 0; j < inputs.Length; j++) // цикл вычисления индуцированного поля нейрона
-                sum += inputs[j] * weights[j + 1];  // линейные преобразования входных сигналов
+            inputs = i; //передача вектора входного сигнала в массив входных данных нейрона
+            double sum = weights[0];
 
+            for (int j = 0; j < inputs.Length; j++)
+            {
+                sum += inputs[j] * weights[j + 1];
+            }
             switch (type)
             {
-                case NeuronType.Hidden:  // для нейронов скрытого слоя
-                    output = Logistick(sum);
-                    derivative = LogistickDerivative(output);
+                case NeuronType.Hidden:
+                    output = logistic(sum);
+                    derivative = logistic_Derivativator(sum);
                     break;
-                case NeuronType.Output:  // для нейронов выходного слоя
-                    output = Logistick(sum);
-                    derivative = LogistickDerivative(output);
+                case NeuronType.Output:
+                    output = Exp(sum);
                     break;
             }
         }
-
-        // функция активации нейрона (логистическая с коэффициентом a)
-        private double Logistick(double x)
+        //Логистическая функция активации нейрона
+        private double logistic(double sum)
         {
-            return 1.0d / (1.0d + Exp(-x));
+            //Защита от переполнения
+            if (sum < -700) return 0.0;
+            if (sum > 700) return 1.0;
+
+            return 1.0 / (1.0 + Exp(-sum));
         }
-
-        // производная функции активации
-        private double LogistickDerivative(double sigmoidOutput)
+        //Производная логистической функции активации нейрона
+        private double logistic_Derivativator(double sum)
         {
-            return a * sigmoidOutput * (1.0d - sigmoidOutput);
+            double s = logistic(sum);
+            return s * (1.0 - s);
         }
     }
 }
